@@ -1,7 +1,44 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Demo</h1>
-<p>Loading chatbot.</p>
+<h1>Argonaut</h1>
+<p>Dev Data</p>
+
+<script type="text/javascript">
+	window.legolySettings = {
+		appId: 1
+	}
+</script>
+
+<script>
+	!function (t, e) {
+		function n () {
+			var t = new XMLHttpRequest;
+			t.open("get", "https://chat-bot.v2-dev.magia.ai/web-chat-bot/dist/static/manifest.json?c=" + Date.now(), !0), t.responseType = "json", t.onload = function () {
+				var e = t.status;
+				200 === e ? o(t.response) : console.error("Unable to load app", e)
+			}, t.send()
+		}
+
+		function o (t) {
+			r("css", "https://fonts.googleapis.com/css?family=Roboto");
+			for (var e in t) {
+				var n = -1 !== e.indexOf("js") ? "js" : "css";
+				r(n, t[e], "js" === n)
+			}
+		}
+
+		function r (n, o, r) {
+			var a, s = "script", i = e.getElementsByTagName("script")[0].parentNode, c = "src";
+			"css" === n && (s = "link", a = "stylesheet", i = e.head, c = "href");
+			var u = e.createElement(s);
+			u[c] = o.indexOf("http") > -1 ? o : "https://chat-bot.v2-dev.magia.ai/web-chat-bot/dist/" + o, a && (u.rel = a), r && (u.onload = function () {
+				t.Legoly ? t.Legoly.default().run() : console.error("There is no app instance loaded")
+			}), i.appendChild(u)
+		}
+
+		t.addEventListener ? t.addEventListener("load", n, !1) : t.attachEvent("onload", n)
+	}(window, document);
+</script>
 </body>
 </html>
